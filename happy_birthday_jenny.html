@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>★ Happy 23rd Birthday Jenny!! ★</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Press Start 2P', monospace;
+    background: #050014;
+    color: #fff;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse at 20% 80%, #4a1d6e 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 25%, #2a1a5e 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 50%, #1a0a3e 0%, #050014 80%);
+    position: relative;
+  }
+
+  /* ===== Nebula glow ===== */
+  .nebula {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 15% 30%, rgba(255,100,200,0.18) 0%, transparent 22%),
+      radial-gradient(circle at 85% 70%, rgba(120,150,255,0.15) 0%, transparent 28%),
+      radial-gradient(circle at 50% 10%, rgba(200,100,255,0.12) 0%, transparent 32%),
+      radial-gradient(circle at 60% 80%, rgba(255,180,220,0.10) 0%, transparent 30%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ===== Twinkling stars ===== */
+  .stars {
+    position: absolute; inset: 0;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.5); }
+    50%      { opacity: 1;   transform: scale(1.4); box-shadow: 0 0 6px currentColor; }
+  }
+
+  /* ===== Shooting stars ===== */
+  .shooting-star {
+    position: absolute;
+    width: 140px; height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 70%, white 100%);
+    border-radius: 999px;
+    filter: drop-shadow(0 0 6px white);
+    opacity: 0;
+    animation: shoot 7s linear infinite;
+    z-index: 3;
+  }
+  .shooting-star::after {
+    content: '';
+    position: absolute;
+    right: -2px; top: -3px;
+    width: 8px; height: 8px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 12px 3px white, 0 0 22px 4px #ffd1dc;
+  }
+  @keyframes shoot {
+    0%   { transform: translate(-180px, -80px) rotate(22deg); opacity: 0; }
+    8%   { opacity: 1; }
+    55%  { opacity: 1; }
+    70%  { opacity: 0; }
+    100% { transform: translate(110vw, 65vh) rotate(22deg); opacity: 0; }
+  }
+
+  /* ===== Title ===== */
+  .title {
+    position: absolute;
+    top: 6%;
+    width: 100%;
+    text-align: center;
+    font-size: clamp(14px, 2.4vw, 26px);
+    color: #ffd1dc;
+    letter-spacing: 3px;
+    text-shadow:
+      0 0 6px #ff8fa3,
+      0 0 14px #fb6f92,
+      0 0 24px rgba(251,111,146,0.6),
+      3px 3px 0 #6b2c5a,
+      -1px -1px 0 #fff;
+    animation: titleGlow 2.4s ease-in-out infinite;
+    z-index: 50;
+    line-height: 1.6;
+  }
+  .title .heart {
+    color: #ff4d8d;
+    text-shadow: 0 0 10px #ff4d8d;
+    display: inline-block;
+    animation: heartBeat 1.2s ease-in-out infinite;
+  }
+  @keyframes titleGlow {
+    0%, 100% { transform: scale(1);    filter: brightness(1); }
+    50%      { transform: scale(1.04); filter: brightness(1.25); }
+  }
+  @keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.25); }
+  }
+
+  /* ===== Scene container ===== */
+  .scene {
+    position: absolute;
+    bottom: 4%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(560px, 92vw);
+    height: 520px;
+    z-index: 10;
+  }
+
+  canvas {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    position: absolute;
+  }
+
+  /* ===== Cake ===== */
+  #cake {
+    width: 100%;
+    height: 380px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 5;
+    filter: drop-shadow(0 6px 22px rgba(255, 143, 163, 0.55));
+  }
+
+  /* ===== Angels ===== */
+  .angel-wrap {
+    position: absolute;
+    width: 140px; height: 154px;
+    top: 10px;
+    z-index: 8;
+    animation: hover 3.2s ease-in-out infinite;
+    filter: drop-shadow(0 0 12px rgba(255, 230, 102, 0.55));
+  }
+  .angel-wrap.left  { left: 4%; }
+  .angel-wrap.right { right: 4%; animation-delay: 1.6s; transform: scaleX(-1); }
+  .angel-wrap canvas {
+    width: 100%; height: 100%;
+    left: 0; top: 0;
+    animation: flap 0.7s steps(1, end) infinite;
+  }
+  .angel-wrap canvas.frame-2 { animation-delay: 0.35s; }
+  @keyframes hover {
+    0%, 100% { transform: translateY(0)    rotate(-2deg); }
+    50%      { transform: translateY(-22px) rotate(2deg); }
+  }
+  /* mirror right angel + still hover */
+  .angel-wrap.right { animation-name: hoverRight; }
+  @keyframes hoverRight {
+    0%, 100% { transform: translateY(0)    rotate(2deg)  scaleX(-1); }
+    50%      { transform: translateY(-22px) rotate(-2deg) scaleX(-1); }
+  }
+  @keyframes flap {
+    0%, 49%   { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  /* ===== Girl ===== */
+  .girl-wrap {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 230px;
+    z-index: 15;
+    filter: drop-shadow(0 0 10px rgba(255, 200, 220, 0.55));
+  }
+  #girl {
+    width: 100%; height: 100%;
+    left: 0; top: 0;
+    animation: wishGlow 3s ease-in-out infinite;
+  }
+  @keyframes wishGlow {
+    0%, 100% { filter: brightness(1); }
+    50%      { filter: brightness(1.15) drop-shadow(0 0 12px rgba(255, 220, 140, 0.85)); }
+  }
+
+  /* ===== Butterflies ===== */
+  .butterfly {
+    position: absolute;
+    width: 36px; height: 28px;
+    z-index: 17;
+  }
+  .butterfly canvas {
+    width: 100%; height: 100%;
+    left: 0; top: 0;
+    animation: bflyFlap 0.32s steps(1, end) infinite;
+  }
+  .butterfly canvas.frame-2 { animation-delay: 0.16s; }
+  @keyframes bflyFlap {
+    0%, 49%   { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  .b1 { bottom: 35%; left: 8%;  animation: flyAround1 9s ease-in-out infinite; }
+  .b2 { bottom: 55%; right: 6%; animation: flyAround2 11s ease-in-out infinite; }
+  .b3 { bottom: 15%; left: 65%; animation: flyAround3 10s ease-in-out infinite; }
+  @keyframes flyAround1 {
+    0%,100%{transform:translate(0,0) rotate(-6deg);}
+    25%{transform:translate(50px,-40px) rotate(6deg);}
+    50%{transform:translate(110px,-10px) rotate(-4deg);}
+    75%{transform:translate(60px,30px) rotate(4deg);}
+  }
+  @keyframes flyAround2 {
+    0%,100%{transform:translate(0,0) rotate(4deg);}
+    25%{transform:translate(-40px,30px) rotate(-6deg);}
+    50%{transform:translate(-90px,0) rotate(6deg);}
+    75%{transform:translate(-30px,-30px) rotate(-4deg);}
+  }
+  @keyframes flyAround3 {
+    0%,100%{transform:translate(0,0) rotate(-3deg);}
+    33%{transform:translate(-30px,-50px) rotate(8deg);}
+    66%{transform:translate(40px,-30px) rotate(-8deg);}
+  }
+
+  /* ===== Confetti dots ===== */
+  .confetti {
+    position: absolute;
+    width: 6px; height: 6px;
+    z-index: 4;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-20px) rotate(0deg);   opacity: 0; }
+    10%  { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0.6; }
+  }
+
+  /* ===== Footer message ===== */
+  .message {
+    position: absolute;
+    bottom: 1.5%;
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    color: #ffd1dc;
+    letter-spacing: 1.5px;
+    opacity: 0.85;
+    z-index: 50;
+    text-shadow: 0 0 8px rgba(255, 143, 163, 0.6);
+  }
+  .age-badge {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'VT323', monospace;
+    font-size: clamp(38px, 6vw, 70px);
+    color: #fff5e1;
+    text-shadow:
+      0 0 10px #ff4d8d,
+      0 0 25px #ff4d8d,
+      4px 4px 0 #6b2c5a;
+    z-index: 49;
+    animation: badgeBounce 2s ease-in-out infinite;
+    letter-spacing: 4px;
+  }
+  @keyframes badgeBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0)     rotate(-3deg); }
+    50%      { transform: translateX(-50%) translateY(-10px) rotate(3deg); }
+  }
+</style>
+</head>
+<body>
+  <div class="nebula"></div>
+  <div class="stars" id="stars"></div>
+
+  <div class="title">
+    <span class="heart">♥</span> &nbsp;HAPPY 23rd BIRTHDAY JENNY!!&nbsp; <span class="heart">♥</span>
+  </div>
+
+  <div class="scene">
+    <canvas id="cake"></canvas>
+
+    <div class="butterfly b1">
+      <canvas class="frame-1" id="bfly1a"></canvas>
+      <canvas class="frame-2" id="bfly1b"></canvas>
+    </div>
+    <div class="butterfly b2">
+      <canvas class="frame-1" id="bfly2a"></canvas>
+      <canvas class="frame-2" id="bfly2b"></canvas>
+    </div>
+    <div class="butterfly b3">
+      <canvas class="frame-1" id="bfly3a"></canvas>
+      <canvas class="frame-2" id="bfly3b"></canvas>
+    </div>
+  </div>
+
+  <div class="message">~ Make a wish, Jenny ✨  May your 23rd year sparkle ~</div>
+
+  <script>
+    /* =========================================================
+       Twinkling starfield
+       ========================================================= */
+    const starsContainer = document.getElementById('stars');
+    const starColors = ['#ffffff', '#ffd1dc', '#aab5ff', '#fff5b1', '#ffb3c1'];
+    for (let i = 0; i < 180; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.5 + 0.6;
+      s.style.width  = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top  = Math.random() * 100 + '%';
+      s.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      s.style.animationDelay    = Math.random() * 4 + 's';
+      const c = starColors[Math.floor(Math.random() * starColors.length)];
+      s.style.background = c;
+      s.style.color = c;
+      starsContainer.appendChild(s);
+    }
+
+    /* =========================================================
+       Shooting stars
+       ========================================================= */
+    for (let i = 0; i < 5; i++) {
+      const ss = document.createElement('div');
+      ss.className = 'shooting-star';
+      ss.style.left = (Math.random() * 60 - 30) + '%';
+      ss.style.top  = (Math.random() * 50) + '%';
+      ss.style.animationDelay    = (i * 2.2 + Math.random() * 1.5) + 's';
+      ss.style.animationDuration = (Math.random() * 3 + 5) + 's';
+      document.body.appendChild(ss);
+    }
+
+    /* =========================================================
+       Confetti rain
+       ========================================================= */
+    const confettiColors = ['#ff4d8d', '#ff8fa3', '#ffd700', '#ffe066', '#aab5ff', '#fff5e1', '#fb6f92'];
+    for (let i = 0; i < 40; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left  = Math.random() * 100 + '%';
+      c.style.top   = -20 + 'px';
+      c.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+      c.style.borderRadius = Math.random() < 0.5 ? '50%' : '0';
+      c.style.width  = (Math.random() * 5 + 4) + 'px';
+      c.style.height = (Math.random() * 5 + 4) + 'px';
+      c.style.animationDuration = (Math.random() * 6 + 6) + 's';
+      c.style.animationDelay    = (Math.random() * 10) + 's';
+      c.style.opacity = 0.85;
+      document.body.appendChild(c);
+    }
+
+    /* =========================================================
+       Pixel-art renderer (canvas, 1-px-per-char)
+       ========================================================= */
+    function renderArt(canvasId, art, palette) {
+      const w = Math.max(...art.map(r => r.length));
+      const h = art.length;
+      const canvas = document.getElementById(canvasId);
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = false;
+      for (let y = 0; y < h; y++) {
+        const row = art[y].padEnd(w, '.');
+        for (let x = 0; x < w; x++) {
+          const c = row[x];
+          if (palette[c]) {
+            ctx.fillStyle = palette[c];
+            ctx.fillRect(x, y, 1, 1);
+          }
+        }
+      }
+    }
+
+    /* =========================================================
+       CAKE – pink-peachy with candles & decorations
+       ========================================================= */
+    const cakePalette = {
+      '.': null,
+      'Y': '#fff2a8',   // flame core
+      'O': '#ff8c42',   // flame outer
+      'o': '#ff4d4d',   // flame base red
+      'C': '#fff5e1',   // candle white
+      'c': '#ff8fa3',   // candle stripe pink
+      'T': '#fff5e1',   // top frosting white
+      't': '#ffe5d4',   // top frosting cream highlight
+      'W': '#ffffff',   // whip cream
+      'w': '#ffd1dc',   // whip cream shadow
+      'P': '#f8a5b5',   // pink cake body
+      'p': '#e07a96',   // darker pink shading
+      'q': '#c95778',   // deepest pink shadow
+      'H': '#ff4d8d',   // hot-pink heart
+      'h': '#ffb3c1',   // pale pink frill
+      '*': '#ffd700',   // gold sprinkle
+      'd': '#ffe066',   // gold sprinkle highlight
+      'B': '#e89bb0',   // plate pink
+      'b': '#8c4d63',   // plate shadow
+      'R': '#ff6b9d',   // ribbon
+      'r': '#c94c7a',   // ribbon shadow
+    };
+
+    const cake = [
+      "............................................",
+      "............................................",
+      ".............Y.......Y.......Y..............",
+      "............YOY.....YOY.....YOY.............",
+      "............YOY.....YOY.....YOY.............",
+      "............ooo.....ooo.....ooo.............",
+      "............CCC.....CCC.....CCC.............",
+      "............CcC.....CcC.....CcC.............",
+      "............CCC.....CCC.....CCC.............",
+      "............CCC.....CCC.....CCC.............",
+      "............CcC.....CcC.....CcC.............",
+      "............CCC.....CCC.....CCC.............",
+      ".........TTTTTTTTTTTTTTTTTTTTTTTT...........",
+      "........TTTTTTTTTTTTTTTTTTTTTTTTTT..........",
+      ".......TTtTTTTTTtTTTTTTTtTTTTTTtTTT.........",
+      ".......TTTTTTTTTTTTTTTTTTTTTTTTTTTT.........",
+      "......wWwWwWwWwWwWwWwWwWwWwWwWwWwWwW........",
+      "......PPPPPPPPPPPPPPPPPPPPPPPPPPPPPP........",
+      "......PpPPHHPHHPPPHHPHHPPPHHPHHPPPPP........",
+      "......PPPPHHHHHPPPHHHHHPPPHHHHHPPPPP........",
+      "......PpPPPHHHPPPPPHHHPPPPPHHHPPPPPP........",
+      "......PPPPPPHPPPPPPPHPPPPPPPHPPPPPPP........",
+      "......PpPPP*dPPPPP*dPPPPP*dPPPPPPPPP........",
+      "......PPPPPPPPPPPPPPPPPPPPPPPPPPPPPP........",
+      "......hhhhhhhhhhhhhhhhhhhhhhhhhhhhhh........",
+      "......PPPPPPPPPPPPPPPPPPPPPPPPPPPPPP........",
+      ".....PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.......",
+      ".....PpHHPHHPHHPHHPHHPHHPHHPHHPHHPHHP.......",
+      ".....PHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHP.......",
+      ".....PPPHHHPPPHHHPPPHHHPPPHHHPPPHHHPP.......",
+      ".....PpPPHPPPPPHPPPPPHPPPPPHPPPPPHPPp.......",
+      ".....PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.......",
+      ".....PpPP*dPPP*dPPP*dPPP*dPPP*dPPPPPp.......",
+      ".....PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP.......",
+      ".....PpPPPPPPPPPPPPPPPPPPPPPPPPPPPPPp.......",
+      "....RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR......",
+      "....rrRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRrr......",
+      "....RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR......",
+      "...BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB.....",
+      "..bBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBb....",
+      "...bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb.....",
+      "............................................",
+    ];
+
+    renderArt('cake', cake, cakePalette);
+
+    /* =========================================================
+       ANGELS – kept as data only (not rendered)
+       ========================================================= */
+    const angelPalette = {
+      '.': null,
+      'S': '#ffd700',   // halo solid
+      'Y': '#fff5b1',   // halo highlight
+      'g': '#fff2a8',   // halo glow
+      'K': '#ffd6b5',   // skin
+      'k': '#e8a896',   // skin shadow
+      'E': '#3d2317',   // eye / lash
+      'B': '#f2a3b8',   // cheek blush
+      'M': '#d96b8e',   // mouth
+      'W': '#ffb3c1',   // wing main pink
+      'w': '#fb6f92',   // wing pink shadow / outline
+      'F': '#ffffff',   // wing white highlight
+      'R': '#fff5e1',   // robe cream
+      'r': '#f2d4b8',   // robe shadow
+      'G': '#ffd700',   // gold trim/belt
+      'H': '#ffd6b5',   // hands (skin)
+      'h': '#e8a896',   // hand shadow
+    };
+
+    /* Wings spread up – frame 1 */
+    const angelUp = [
+      "..............................",
+      ".............gSSg.............",
+      "............gSYYSg............",
+      "...........gSY..YSg...........",
+      "............gSYYSg............",
+      ".............gSSg.............",
+      "..........KKKKKKKKKK..........",
+      ".........KKKKKKKKKKKK.........",
+      ".........KKEKKKKKKEKK.........",
+      ".........KKKBBKKBBKKK.........",
+      ".........KKKKMMMMKKKK.........",
+      ".........KKKKKKKKKKKK.........",
+      "...WWW....KKKKKKKKKK....WWW...",
+      "..WWFFW...RRRRRRRRRR...WFFWW..",
+      ".WWFFFWw.RRRRRRRRRRRR.wWFFFWW.",
+      "WWFFFFWwRRRRRrrrrRRRRRwWFFFFWW",
+      "WWFFFFWwRRRRRHHHHRRRRRwWFFFFWW",
+      ".WWFFWwwRRRRHHHHHHRRRRwwWFFWW.",
+      "..WWwwwRRRRRRRRRRRRRRRRwwwWW..",
+      "...ww..RRRRGGGGGGGGGGRRRR.ww..",
+      "......RRRRRRRRRRRRRRRRRRRR....",
+      ".......RRRRRRRRRRRRRRRRRR.....",
+      "........RRRR........RRRR......",
+      ".........RRR........RRR.......",
+      "..........KK........KK........",
+      "..............................",
+    ];
+
+    /* Wings folded down – frame 2 */
+    const angelDown = [
+      "..............................",
+      ".............gSSg.............",
+      "............gSYYSg............",
+      "...........gSY..YSg...........",
+      "............gSYYSg............",
+      ".............gSSg.............",
+      "..........KKKKKKKKKK..........",
+      ".........KKKKKKKKKKKK.........",
+      ".........KKEKKKKKKEKK.........",
+      ".........KKKBBKKBBKKK.........",
+      ".........KKKKMMMMKKKK.........",
+      ".........KKKKKKKKKKKK.........",
+      "..........KKKKKKKKKK..........",
+      ".........RRRRRRRRRRRR.........",
+      "........RRRRRRRRRRRRRR........",
+      "....WW..RRRRRrrrrRRRRR..WW....",
+      "...WFW..RRRRRHHHHRRRRR..WFW...",
+      "..wWFFw.RRRRHHHHHHRRRR.wFFWw..",
+      "..wWFFFwRRRRRRRRRRRRRRwFFFWw..",
+      "...wWFFwRRRGGGGGGGGGGRRwFFWw..",
+      "....wWwRRRRRRRRRRRRRRRRRwWw...",
+      ".....w.RRRRRRRRRRRRRRRRRR.....",
+      "........RRRR........RRRR......",
+      ".........RRR........RRR.......",
+      "..........KK........KK........",
+      "..............................",
+    ];
+
+    /* angels intentionally not rendered */
+
+    /* =========================================================
+       GIRL – inspired by the reference: long dark hair,
+       sunglasses on head, peachy skin, black dress, wishing
+       ========================================================= */
+    const girlPalette = {
+      '.': null,
+      'H': '#241612',   // hair dark (almost black)
+      'h': '#3d241c',   // hair mid-tone
+      'I': '#b07c47',   // hair caramel/honey highlight (bangs)
+      'i': '#d9a36b',   // hair caramel light highlight
+      'G': '#0a0a0e',   // black glasses frame
+      'g': '#3a2a26',   // lens tint (very soft, shows skin behind)
+      'K': '#ffd6b5',   // skin
+      'k': '#e8a896',   // skin shadow
+      'E': '#3d2317',   // eye / lash (closed-eye curved line)
+      'B': '#f2a3b8',   // cheek blush
+      'M': '#d96b8e',   // mouth (smile)
+      'D': '#15151c',   // black dress
+      'd': '#26262f',   // dress highlight
+      'S': '#3d2317',   // shoes
+      'U': '#a8d4ee',   // blue bag (baby blue)
+      'u': '#7ab0d4',   // blue bag shadow
+      'W': '#ffffff',   // sparkle / strap
+    };
+
+    /* Long dark hair w/ caramel bangs, square black glasses,
+       closed smiling eyes, black sleeveless dress, blue shoulder bag,
+       relaxed standing pose – no clasped hands. */
+    const girl = [
+      "........................",
+      "..........HHHHHHHH......",
+      ".........HIIIIIIIIH.....",
+      "........HIIIiIiIIIIHH...",
+      ".......HHIIIIHHHHIIHHH..",
+      ".......HKKKKKKKKKKKKKH..",
+      "......HHKKKKKKKKKKKKKHH.",
+      "......HKGGGGGGGGGGGGGKH.",
+      "......HKGggGGGGGGGggGKH.",
+      "......HKGgEgGGGGgEgGKHH.",
+      "......HKGggGGGGGGGggGKH.",
+      "......HKGGGGGGGGGGGGGKH.",
+      "......HKKBBKKKKKKKBBKKH.",
+      "......HKKKKKKKMMMKKKKKH.",
+      ".......HKKKKKKKKKKKKKH..",
+      ".......HHKKKKKKKKKKKHH..",
+      "........HHHKKKKKKKHHH...",
+      ".......HHHHHHHHHHHHHH...",
+      ".....HHDDDDDDDDDDDDDDH..",
+      "....HDDDDDDDDDDDDDDDDH..",
+      "...HDDDDDKKKKKKKKDDDDDH.",
+      "...HDDDDKKKKKKKKKKDDDDH.",
+      "..HDDDDDDDDDDDDDDDDDDDH.",
+      "..HHDDDDDDDDDDDDDDDDDUH.",
+      ".HHHDDDDDDDDDDDDDDDDDUH.",
+      "HHHDDDDDDDDDDDDDDDDDDUuH",
+      "HHHDDDDDDDDDDDDDDDDDDUuH",
+      "HHDDDDDDDDDDDDDDDDDDDUuH",
+      ".HHDDDDDDDDDDDDDDDDDDuH.",
+      "..HHDDDDDDDDDDDDDDDDDH..",
+      "...HDDDDDDDDDDDDDDDDH...",
+      "....DDDDDDDDDDDDDDDD....",
+      "....DDDDDDDDDDDDDDDD....",
+      "....DDDDDDD..DDDDDDD....",
+      "....KKKKKK....KKKKKK....",
+      "....KKKKK......KKKKK....",
+      "....SSSSS......SSSSS....",
+      "........................",
+    ];
+
+    /* girl intentionally not rendered */
+
+    /* =========================================================
+       BUTTERFLIES – two frames each
+       ========================================================= */
+    const bflyPalette = {
+      '.': null,
+      'P': '#ff8fa3',
+      'p': '#fb6f92',
+      'D': '#ff4d8d',
+      'Y': '#ffe066',
+      'O': '#ff8c42',
+      'B': '#2a1a17',
+      'W': '#ffffff',
+    };
+
+    const bflyOpen = [
+      "PPP.....PPP",
+      "PpDP...PDpP",
+      "pDDpB.pDDpD".substring(0,11),
+      "PPpDBDpPPpP".substring(0,11),
+      "..pYBYp....",
+      "...pBp.....",
+      "....B......",
+      "....B......",
+    ];
+    // sanitize widths
+    const bflyOpen2 = [
+      "PPP.....PPP",
+      "PpDPB..PDpP",
+      "pDDpBDpDDpP",
+      "PPpDBDpPDpP",
+      "..pYBYp....",
+      "...pBp.....",
+      "....B......",
+      "....B......",
+    ];
+    const bflyClosed = [
+      "...P.B.P...",
+      "..PpDBDpP..",
+      "..pDDBDDp..",
+      "..PpDBDpP..",
+      "...pYBYp...",
+      "....BBB....",
+      "....B......",
+      "....B......",
+    ];
+
+    renderArt('bfly1a', bflyOpen2,  bflyPalette);
+    renderArt('bfly1b', bflyClosed, bflyPalette);
+    renderArt('bfly2a', bflyOpen2,  bflyPalette);
+    renderArt('bfly2b', bflyClosed, bflyPalette);
+    renderArt('bfly3a', bflyOpen2,  bflyPalette);
+    renderArt('bfly3b', bflyClosed, bflyPalette);
+
+    /* =========================================================
+       Click-to-celebrate – burst of hearts
+       ========================================================= */
+    document.addEventListener('click', (e) => {
+      for (let i = 0; i < 14; i++) {
+        const h = document.createElement('div');
+        h.textContent = ['♥','✨','★','🎂','🎀'][Math.floor(Math.random()*5)];
+        h.style.position = 'absolute';
+        h.style.left = e.clientX + 'px';
+        h.style.top  = e.clientY + 'px';
+        h.style.fontSize = (Math.random() * 14 + 14) + 'px';
+        h.style.pointerEvents = 'none';
+        h.style.zIndex = 999;
+        h.style.color = ['#ff4d8d','#ffd1dc','#ffe066','#fff'][Math.floor(Math.random()*4)];
+        h.style.textShadow = '0 0 8px currentColor';
+        h.style.transition = 'transform 1.2s ease-out, opacity 1.2s ease-out';
+        document.body.appendChild(h);
+        const dx = (Math.random() - 0.5) * 240;
+        const dy = -(Math.random() * 180 + 60);
+        requestAnimationFrame(() => {
+          h.style.transform = `translate(${dx}px, ${dy}px) rotate(${(Math.random()-0.5)*360}deg)`;
+          h.style.opacity = 0;
+        });
+        setTimeout(() => h.remove(), 1300);
+      }
+    });
+  </script>
+</body>
+</html>
